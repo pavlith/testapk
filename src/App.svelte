@@ -209,7 +209,7 @@
             <div class="space-y-2">
               {#each visibleTasks as task (task.id)}
                 <Card class="flex items-center gap-3 p-3.5 transition-colors sm:p-4">
-                  <button aria-label={task.done ? "Вернуть задачу" : "Выполнить задачу"} aria-pressed={task.done} class:completed={task.done} class="flex size-9 shrink-0 items-center justify-center rounded-xl border border-input transition-colors hover:border-primary completed:border-primary completed:bg-primary completed:text-primary-foreground" onclick={() => toggleTask(task.id)}>
+                  <button aria-label={task.done ? "Вернуть задачу" : "Выполнить задачу"} aria-pressed={task.done} class={task.done ? "flex size-9 shrink-0 items-center justify-center rounded-xl border border-primary bg-primary text-primary-foreground transition-colors" : "flex size-9 shrink-0 items-center justify-center rounded-xl border border-input transition-colors hover:border-primary"} onclick={() => toggleTask(task.id)}>
                     {#if task.done}<Check class="size-5" />{/if}
                   </button>
                   <span class:line-through={task.done} class:text-muted-foreground={task.done} class="min-w-0 flex-1 break-words text-sm font-medium">{task.title}</span>
@@ -268,10 +268,10 @@
 
     <nav class="safe-bottom fixed inset-x-0 bottom-0 z-20 border-t border-border bg-card/95 px-5 pt-2 backdrop-blur-xl" aria-label="Навигация">
       <div class="mx-auto flex max-w-3xl items-center justify-around">
-        <button class:active={screen === "tasks"} class="flex min-w-28 flex-col items-center gap-1 rounded-xl px-5 py-2 text-xs font-medium text-muted-foreground transition-colors active:text-primary" onclick={() => navigate("tasks")} aria-current={screen === "tasks" ? "page" : undefined}>
+        <button class={screen === "tasks" ? "flex min-w-28 flex-col items-center gap-1 rounded-xl px-5 py-2 text-xs font-semibold text-primary" : "flex min-w-28 flex-col items-center gap-1 rounded-xl px-5 py-2 text-xs font-medium text-muted-foreground"} onclick={() => navigate("tasks")} aria-current={screen === "tasks" ? "page" : undefined}>
           <ListTodo class="size-5" /> Задачи
         </button>
-        <button class:active={screen === "settings"} class="flex min-w-28 flex-col items-center gap-1 rounded-xl px-5 py-2 text-xs font-medium text-muted-foreground transition-colors active:text-primary" onclick={() => navigate("settings")} aria-current={screen === "settings" ? "page" : undefined}>
+        <button class={screen === "settings" ? "flex min-w-28 flex-col items-center gap-1 rounded-xl px-5 py-2 text-xs font-semibold text-primary" : "flex min-w-28 flex-col items-center gap-1 rounded-xl px-5 py-2 text-xs font-medium text-muted-foreground"} onclick={() => navigate("settings")} aria-current={screen === "settings" ? "page" : undefined}>
           <Settings2 class="size-5" /> Настройки
         </button>
       </div>
